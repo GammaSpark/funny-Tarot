@@ -3,6 +3,7 @@ import java.util.*;
 public class TarotDeck {
     private String card;
     private boolean inverted;
+    private String[] reading;
 
     public TarotDeck() {
     }
@@ -17,8 +18,13 @@ public class TarotDeck {
 
     }
     private boolean isInverted(){
+        return inverted;
+    }
+
+    private boolean flipRandom(){
         Random random = new Random();
-        return random.nextBoolean();
+        inverted = random.nextBoolean();
+        return inverted;
     }
 
     public String pullMajor(){
@@ -27,14 +33,11 @@ public class TarotDeck {
 
     private String majorArcana() {
         Random random = new Random();
-        boolean getInverted = random.nextBoolean();
-        String inverted = "";
         int arcana = random.nextInt(22);
         String arcanaString = "The Fool";
-        
-        if (isInverted()){
-            inverted = "Inverted ";
-        }
+        String inverted = "";
+        if (flipRandom())
+        inverted = "inverted ";
         switch(arcana){
             case 0:{
                 arcanaString = "Fool";
