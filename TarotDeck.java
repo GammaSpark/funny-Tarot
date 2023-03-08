@@ -3,17 +3,23 @@ import java.util.*;
 public class TarotDeck {
     private String card;
     private boolean inverted;
-    private String[] reading;
+    private ArrayList<String> cardsRead;
 
     public TarotDeck() {
+        this.cardsRead = new ArrayList<String>();
     }
-
+    public void read(int amount){
+        for (int i = 0; i < amount; i++)
+        pull();
+        System.out.println(cardsRead);
+    }
     public String pull() {
-        Random random = new Random(2);
-        if(random.nextInt() == 0){
+        Random random = new Random();
+        if(random.nextInt(3) == 0){
             card = majorArcana();
         }
         else card = minorArcana();
+        cardsRead.add(card);
         return card;
 
     }
